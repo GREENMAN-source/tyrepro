@@ -1,0 +1,25 @@
+databases:
+  - name: tyrepro-db
+    databaseName: tyrepro
+    user: tyrepro_user
+    plan: free
+
+services:
+  - type: web
+    name: tyrepro-api
+    env: node
+    buildCommand: "npm install && npm run db:push -w apps/api && npm run build -w apps/api"
+    startCommand: "npm run start -w apps/api"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: tyrepro-db
+          property: connectionString
+      - key: PORT
+        value: "10000"
+      - key: NODE_ENV
+        value: production
+      - key: WEB_ORIGIN
+        value: "https://tyrepro.pages.dev"
+      - key: JWT_SECRET
+        generateValue: true

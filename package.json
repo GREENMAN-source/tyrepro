@@ -1,0 +1,33 @@
+{
+  "name": "tyrepro-suite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack tyre shop website and ERP management system.",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w apps/api\" \"npm run dev -w apps/web\"",
+    "build": "npm run build -w apps/api && npm run build -w apps/web",
+    "lint": "npm run lint -w apps/web && npm run lint -w apps/api",
+    "db:push": "npm run db:push -w apps/api",
+    "db:seed": "npm run db:seed -w apps/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "vercel": "^54.1.0",
+    "wrangler": "^4.92.0"
+  },
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "dependencies": {
+    "@apidevtools/swagger-parser": "^12.1.0",
+    "call-bound": "^1.0.4",
+    "has-tostringtag": "^1.0.2",
+    "ipaddr.js": "^1.9.1",
+    "picomatch": "^2.3.2",
+    "postcss": "^8.5.14",
+    "postcss-selector-parser": "^7.1.1"
+  }
+}
