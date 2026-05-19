@@ -7,3 +7,5 @@ coverage
 .vercel
 uploads
 *.log
+
+.vercel
